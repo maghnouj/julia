@@ -20,9 +20,13 @@ end
 if Sys.iswindows()
     cp("../stdlib/DelimitedFiles/docs/src/index.md", "src/stdlib/delimitedfiles.md")
     cp("../stdlib/Test/docs/src/index.md", "src/stdlib/test.md")
+    cp("../stdlib/Mmap/docs/src/index.md", "src/stdlib/mmap.md")
+    cp("../stdlib/SharedArrays/docs/src/index.md", "src/stdlib/sharedarrays.md")
 else
     symlink("../../../stdlib/DelimitedFiles/docs/src/index.md", "src/stdlib/delimitedfiles.md")
     symlink("../../../stdlib/Test/docs/src/index.md", "src/stdlib/test.md")
+    symlink("../../../stdlib/Mmap/docs/src/index.md", "src/stdlib/mmap.md")
+    symlink("../../../stdlib/SharedArrays/docs/src/index.md", "src/stdlib/sharedarrays.md")
 end
 
 const PAGES = [
@@ -126,11 +130,11 @@ const PAGES = [
     ],
 ]
 
-using DelimitedFiles, Test
+using DelimitedFiles, Test, Mmap, SharedArrays
 
 makedocs(
     build     = joinpath(pwd(), "_build/html/en"),
-    modules   = [Base, Core, BuildSysImg, DelimitedFiles, Test],
+    modules   = [Base, Core, BuildSysImg, DelimitedFiles, Test, Mmap, SharedArrays],
     clean     = false,
     doctest   = "doctest" in ARGS,
     linkcheck = "linkcheck" in ARGS,
